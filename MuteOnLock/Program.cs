@@ -24,9 +24,17 @@ namespace MuteOnLock
 
         static void SystemEvents_SessionSwitch(object sender, Microsoft.Win32.SessionSwitchEventArgs e)
         {
-            if (e.Reason == SessionSwitchReason.SessionLock || e.Reason == SessionSwitchReason.SessionUnlock)
+            switch (e.Reason)
             {
-                SoundMuter.MuteUnmute();
+                case SessionSwitchReason.SessionLogon:
+                case SessionSwitchReason.SessionUnlock:
+                    SoundMuter.UnMute();
+                    break;
+
+                case SessionSwitchReason.SessionLock:
+                    SoundMuter.Mute();
+                    break;
+
             }
         }
     }

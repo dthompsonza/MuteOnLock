@@ -17,16 +17,19 @@ namespace MuteOnLock
             InitializeComponent();
         }
 
-        private void btnMute_Click(object sender, EventArgs e)
-        {
-
-            SoundMuter.MuteUnmute(); 
-
-        }
-
         private void frmMain_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void btnUnmute_Click(object sender, EventArgs e)
+        {
+            SoundMuter.UnMute();
+        }
+
+        private void btnToggleMute_Click(object sender, EventArgs e)
+        {
+            SoundMuter.ToggleMute();
         }
     }
 }
