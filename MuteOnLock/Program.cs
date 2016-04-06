@@ -1,6 +1,7 @@
 ﻿using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Windows.Forms;
 
 namespace MuteOnLock
@@ -16,26 +17,34 @@ namespace MuteOnLock
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
-            Microsoft.Win32.SystemEvents.SessionSwitch += new Microsoft.Win32.SessionSwitchEventHandler(SystemEvents_SessionSwitch);
-
             Form launchForm = new frmMain();
             Application.Run(launchForm);
         }
 
-        static void SystemEvents_SessionSwitch(object sender, Microsoft.Win32.SessionSwitchEventArgs e)
-        {
-            switch (e.Reason)
-            {
-                case SessionSwitchReason.SessionLogon:
-                case SessionSwitchReason.SessionUnlock:
-                    SoundMuter.UnMute();
-                    break;
+        //static void SystemEvents_SessionSwitch(object sender, Microsoft.Win32.SessionSwitchEventArgs e, SoundMuter sm)
+        //{
+        //    Debug.Print($"{DateTime.Now.ToLongTimeString()} Event: {e.Reason.ToString()}");
 
-                case SessionSwitchReason.SessionLock:
-                    SoundMuter.Mute();
-                    break;
+        //    try
+        //    {
+        //        switch (e.Reason)
+        //        {
+        //            case SessionSwitchReason.SessionLogon:
+        //            case SessionSwitchReason.SessionUnlock:
+        //                soundMuter.UnMute();
+        //                break;
 
-            }
-        }
+        //            case SessionSwitchReason.SessionLock:
+        //                soundMuter.Mute();
+        //                break;
+
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        Debug.Print($"Exception in '{nameof(SystemEvents_SessionSwitch)}' - {ex.Message}");
+        //    }
+            
+        //}
     }
 }

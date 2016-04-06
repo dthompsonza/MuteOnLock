@@ -28,8 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMain));
             this.btnUnmute = new System.Windows.Forms.Button();
             this.btnToggleMute = new System.Windows.Forms.Button();
+            this.appNotifyIcon = new System.Windows.Forms.NotifyIcon(this.components);
             this.SuspendLayout();
             // 
             // btnUnmute
@@ -52,6 +55,15 @@
             this.btnToggleMute.UseVisualStyleBackColor = true;
             this.btnToggleMute.Click += new System.EventHandler(this.btnToggleMute_Click);
             // 
+            // appNotifyIcon
+            // 
+            this.appNotifyIcon.BalloonTipIcon = System.Windows.Forms.ToolTipIcon.Info;
+            this.appNotifyIcon.BalloonTipText = "Mute on Lock is running from the system tray. Double-click to open the app.";
+            this.appNotifyIcon.BalloonTipTitle = "Mute on Lock";
+            this.appNotifyIcon.Icon = ((System.Drawing.Icon)(resources.GetObject("appNotifyIcon.Icon")));
+            this.appNotifyIcon.Text = "notifyIcon1";
+            this.appNotifyIcon.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.appNotifyIcon_MouseDoubleClick);
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -61,8 +73,8 @@
             this.Controls.Add(this.btnUnmute);
             this.Name = "frmMain";
             this.Text = "MuteOnLock";
-            this.WindowState = System.Windows.Forms.FormWindowState.Minimized;
             this.Load += new System.EventHandler(this.frmMain_Load);
+            this.Resize += new System.EventHandler(this.frmMain_Resize);
             this.ResumeLayout(false);
 
         }
@@ -70,6 +82,7 @@
         #endregion
         private System.Windows.Forms.Button btnUnmute;
         private System.Windows.Forms.Button btnToggleMute;
+        private System.Windows.Forms.NotifyIcon appNotifyIcon;
     }
 }
 
